@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Precision Tracker | Reliable Executor</title>
+    <style>
+        body {
+            background: #000;
+            color: #fff;
+            font-family: 'Consolas', monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 20px;
+        }
+
+        .panel {
+            width: 457px;
+            border: 1px solid #7fb3eb;
+            padding: 20px;
+            background: #0a0a0a;
+            box-shadow: 0 0 20px rgba(127, 179, 235, 0.2);
+            margin-left: -300px;
+        }
+
+        .header {
+            color: #7fb3eb;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            margin-left: 200px;
+            font-size: 0.85rem;
+        }
+
+        .label {
+            color: #666;
+        }
+
+        .val {
+            color: #fff;
+            text-align: right;
+            max-width: 60%;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            background: #7fb3eb;
+            border: none;
+            color: #000;
+            cursor: pointer;
+            font-weight: bold;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background: #fff;
+        }
+
+        #status {
+            font-size: 0.7rem;
+            color: #ff4444;
+            margin-top: 10px;
+        }
+
+        h1{
+            color: #7fb3eb;
+            display: flex; 
+            margin-top: -600px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Better Leave...</h1>
+
+    <div class="panel">
+        <div class="header">> INITIALIZING TRACKER...</div>
+        <img width="190px" height="150px" src="https://tse3.mm.bing.net/th/id/OIP.kbv8kYIx75jtuzyC-rjbXAHaEY?rs=1&pid=ImgDetMain&o=7&rm=3" alt="">
+        <div class="row"><span class="label">IP:</span> <span class="val" id="ip">Fetching...</span></div>
+        <div class="row"><span class="label">CONTINENT:</span> <span class="val" id="continent">Europe</span></div>
+        <div class="row"><span class="label">COUNTRY:</span> <span class="val" id="country">North Macedonia</span></div>
+        <div class="row"><span class="label">CITY:</span> <span class="val" id="city">Skopje</span></div>
+        <div class="row"><span class="label">STREET:</span> <span class="val" id="street">Awaiting Permission...</span>
+        </div>
+
+        <a href="#" id="shop-btn" class="btn" target="_blank">LOCATE NEAREST SHOP</a>
+        <div id="status"></div>
+    </div>
+
+    <script>
+        async function init() {
+            try {
+                // 1. Get IP Data (For Country/City/Continent)
+                const ipRes = await fetch('https://ipapi.co/json/');
+                const ipData = await ipRes.json();
+
+                document.getElementById('ip').textContent = ipData.ip;
+                document.getElementById('country').textContent = ipData.country_name;
+                document.getElementById('city').textContent = ipData.city;
+                document.getElementById('continent').textContent = ipData.continent_code;
+
+                // 2. Get Precise GPS Location
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(async (position) => {
+                        const lat = position.coords.latitude;
+                        const lon = position.coords.longitude;
+
+                        // 3. Reverse Geocode (Get actual street address)
+                        const geoRes = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`);
+                        const geoData = await geoRes.json();
+
+                        document.getElementById('street').textContent = geoData.display_name.split(',')[0] + ", " + geoData.display_name.split(',')[1];
+
+                        // 4. Update Shop Link to actual closest shop
+                        document.getElementById('shop-btn').href = `https://www.google.com/maps/search/shops/@${lat},${lon},15z`;
+                        document.getElementById('status').style.color = "#00ff00";
+                        document.getElementById('status').textContent = "SYSTEM ACTIVE: GPS LOCK ACQUIRED";
+                    }, () => {
+                        document.getElementById('status').textContent = "LOCATION WILL BE CAPTURED IN 30 SECONDS";
+                    });
+                }
+            } catch (e) {
+                document.getElementById('status').textContent = "LOCATION WILL BE CAPTURED IN 30 SECONDS";
+            }
+        }
+
+        init();
+    </script>
+
+</body>
+
+</html>

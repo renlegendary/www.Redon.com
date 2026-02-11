@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xeno | The Best Reliable Executor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #050505;
+            --card-bg: #0d0d0d;
+            --border-color: #1a1a1a;
+            --text-main: #ffffff;
+            --text-muted: #888888;
+            --accent-blue: #3b82f6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* --- Navigation --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .logo { font-weight: 700; font-size: 1.2rem; }
+
+        .nav-links { display: flex; gap: 20px; list-style: none; }
+        .nav-links a { 
+            color: var(--text-muted); 
+            text-decoration: none; 
+            font-size: 0.9rem; 
+            transition: 0.3s;
+        }
+        .nav-links a:hover { color: white; }
+
+        .btn-discord {
+            background: white;
+            color: black;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero h1 span {
+            color: #60a5fa; /* Light blue accent */
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        .btn-download {
+            background: white;
+            color: black;
+            padding: 12px 30px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        /* --- Feature Cards --- */
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 30px;
+        }
+
+        .card h3 { margin-bottom: 10px; }
+        .card p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px; }
+
+        /* Code Block Mockup */
+        .code-mockup {
+            background: #000;
+            border-radius: 8px;
+            padding: 15px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.85rem;
+            border: 1px solid #222;
+        }
+        .code-blue { color: #3b82f6; }
+        .code-green { color: #10b981; }
+        .code-yellow { color: #fbbf24; }
+
+        /* Stats List */
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid #222;
+        }
+        .stat-label { font-size: 0.9rem; }
+        .stat-value { font-weight: 600; font-size: 0.9rem; }
+
+        /* --- Stats/Global Section --- */
+        .bottom-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            max-width: 1100px;
+            margin: 80px auto;
+            padding: 0 20px;
+        }
+
+        .testimonial {
+            background: #0d0d0d;
+            border: 1px solid #1a1a1a;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+
+        .globe-placeholder {
+            width: 100%;
+            height: 300px;
+            background: radial-gradient(circle, #1a1a1a 0%, #000 70%);
+            border-radius: 50%;
+            position: relative;
+            border: 1px solid #222;
+        }
+
+        @media (max-width: 768px) {
+            .features-grid, .bottom-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Ξ Xeno</div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Help</a></li>
+            <li><a href="#">Executor</a></li>
+            <li><a href="#">Download</a></li>
+        </ul>
+        <a href="#" class="btn-discord">Join Discord</a>
+    </nav>
+
+    <header class="hero">
+        <h1>Experience the Best<br><span>Reliable</span> Executor</h1>
+        <p>Xeno provides lightning-fast execution, minimal script support, and a simple interface - all completely free and keyless.</p>
+        <a href="index2.html" class="btn-download">↓ Download Now</a>
+    </header>
+
+    <section class="features-grid">
+        <div class="card">
+            <h3>External Execution</h3>
+            <p>Execute scripts externally with our executor interface.</p>
+            <div class="code-mockup">
+                <div><span class="code-blue">local</span> player = <span class="code-green">game.Players.LocalPlayer</span></div>
+                <div><span class="code-blue">local</span> char = player.Character</div>
+                <div style="color: #555;">-- Execute scripts here</div>
+                <div><span class="code-blue">function</span> <span class="code-yellow">execute()</span></div>
+                <div style="padding-left: 15px;"><span class="code-yellow">print</span>("Success!")</div>
+                <div><span class="code-blue">end</span></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Lightning Fast Performance</h3>
+            <p>Experience lightning-fast script execution with the highest stability.</p>
+            <div class="stat-item">
+                <span class="stat-label">Execution Speed</span>
+                <span class="stat-value">Lightning Fast</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Performance</span>
+                <span class="stat-value">99.9%</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Response Time</span>
+                <span class="stat-value">Fast</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Reliability</span>
+                <span class="stat-value">100%</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="bottom-grid">
+        <div>
+            <h2>100% Free & Keyless</h2>
+            <p style="color: var(--text-muted); margin-bottom: 20px;">No keys, no payments. Trusted by 919,948 users.</p>
+            
+            <div class="testimonial">
+                <strong>Alpha Tester</strong> <small style="color: #555;">used Xeno</small>
+                <p>"Best executor I've ever used. Fast, reliable, and free!"</p>
+            </div>
+            <div class="testimonial">
+                <strong>J. Smith</strong> <small style="color: #555;">used Xeno</small>
+                <p>"Amazing performance and no annoying keys. Highly recommended."</p>
+            </div>
+        </div>
+        
+        <div>
+            <h2>Users Worldwide</h2>
+            <p style="color: var(--text-muted); margin-bottom: 20px;">Join our growing community of users.</p>
+            <div class="globe-placeholder">
+                </div>
+        </div>
+    </section>
+
+</body>
+</html>
